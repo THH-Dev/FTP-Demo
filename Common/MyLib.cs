@@ -687,6 +687,29 @@ namespace JohnNguyen.Lib
             MyLib.ShowDlgWarning($"Upload {Path.GetFileName(file_name)} to {ftp_dest} = {result}");
         }
 
+
+       public static void DownloadFileFTP()
+        {
+            string inputfilepath = @"F:\abc.jpg";
+            string ftphost = "192.168.100.122";
+            string ftpfilepath = "/2.jpg";
+
+            string ftpfullpath = "ftp://" + ftphost + ftpfilepath;
+
+            using (WebClient request = new WebClient())
+            {
+                request.Credentials = new NetworkCredential("dev-01", "tanhungha@2022");
+                byte[] fileData = request.DownloadData(ftpfullpath);
+
+                using (FileStream file = File.Create(inputfilepath))
+                {
+                    file.Write(fileData, 0, fileData.Length);
+                    file.Close();
+                }
+                MessageBox.Show("Download Complete");
+            }
+        }
+
         static readonly string s1 = @"ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚÝàáâãèéêìíòóôõùúýĂăĐđĨĩŨũƠơƯưẠạẢảẤấẦầẨẩẪẫẬậẮắẰằẲẳẴẵẶặẸẹẺẻẼẽẾếỀềỂểỄễỆệỈỉỊịỌọỎỏỐốỒồỔổỖỗỘộỚớỜờỞởỠỡỢợỤụỦủỨứỪừỬửỮữỰựỲỳỴỵỶỷỸỹ";
         static readonly string s0 = @"AAAAEEEIIOOOOUUYaaaaeeeiioooouuyAaDdIiUuOoUuAaAaAaAaAaAaAaAaAaAaAaAaEeEeEeEeEeEeEeEeIiIiOoOoOoOoOoOoOoOoOoOoOoOoUuUuUuUuUuUuUuYyYyYyYy";
         public static string RemoveDiacritics(string accentedStr)

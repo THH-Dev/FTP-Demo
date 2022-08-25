@@ -31,6 +31,7 @@
             this.BtnLoad = new System.Windows.Forms.Button();
             this.txtPath = new System.Windows.Forms.TextBox();
             this.BtnUpload = new System.Windows.Forms.Button();
+            this.Download_Btn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // BtnLoad
@@ -60,12 +61,23 @@
             this.BtnUpload.UseVisualStyleBackColor = true;
             this.BtnUpload.Click += new System.EventHandler(this.BtnUpload_Click);
             // 
+            // Download_Btn
+            // 
+            this.Download_Btn.Location = new System.Drawing.Point(713, 72);
+            this.Download_Btn.Name = "Download_Btn";
+            this.Download_Btn.Size = new System.Drawing.Size(75, 23);
+            this.Download_Btn.TabIndex = 0;
+            this.Download_Btn.Text = "Download";
+            this.Download_Btn.UseVisualStyleBackColor = true;
+            this.Download_Btn.Click += new System.EventHandler(this.Download_Btn_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.txtPath);
+            this.Controls.Add(this.Download_Btn);
             this.Controls.Add(this.BtnUpload);
             this.Controls.Add(this.BtnLoad);
             this.Name = "MainForm";
@@ -80,6 +92,7 @@
         private System.Windows.Forms.Button BtnLoad;
         private System.Windows.Forms.TextBox txtPath;
         private System.Windows.Forms.Button BtnUpload;
+        private System.Windows.Forms.Button Download_Btn;
     }
 }
 

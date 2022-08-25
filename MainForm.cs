@@ -34,5 +34,10 @@ namespace FTP_Demo
         {
             MyLib.UploadImage(file_name);
         }
+
+        private void Download_Btn_Click(object sender, EventArgs e)
+        {
+            MyLib.DownloadFileFTP();
+        }
     }
 }
