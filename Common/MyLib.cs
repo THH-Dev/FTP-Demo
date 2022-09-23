@@ -14,6 +14,7 @@ using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -282,6 +283,7 @@ namespace JohnNguyen.Lib
 
     public class MyDefine
     {
+        public static uint NUM_THREAD = 2;
 
         public static uint WM_LBUTTONDOWN = 0x201;
         public static uint WM_LBUTTONUP = 0x202;
@@ -438,7 +440,14 @@ namespace JohnNguyen.Lib
         }
     }
 
-    
+
+    public enum eTaskLoop
+    {
+        Task_Producer,
+        Task_Comsummer
+    }
+
+
     public static class MyParam
     {
         public static string token = null;
@@ -449,17 +458,121 @@ namespace JohnNguyen.Lib
         public static ImageList my_image_list;
         public static List<string> my_list_image;
         static int number_create = 0;
+
+        public static List<TaskLoop> taskLoops = new List<TaskLoop>();
+
         static MyParam()
         {
             my_image_list = new ImageList();
             my_image_list.ImageSize = new Size(100, 100);
             my_list_image = new List<string>();
 
+            for (int i = 0; i < MyDefine.NUM_THREAD; i++)
+            {
+                taskLoops.Add(new TaskLoop());
+            }
+
             Console.WriteLine($"Constructor MyParam = {number_create++}");
 
         }
 
     }
+
+    public sealed class AsyncLock
+    {
+        private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
+        public async Task<IDisposable> LockAsync()
+        {
+            await _semaphore.WaitAsync();
+            return new Handler(_semaphore);
+        }
+
+        private sealed class Handler : IDisposable
+        {
+            private readonly SemaphoreSlim _semaphore;
+            private bool _disposed = false;
+
+            public Handler(SemaphoreSlim semaphore)
+            {
+                _semaphore = semaphore;
+            }
+
+            public void Dispose()
+            {
+                if (!_disposed)
+                {
+                    _semaphore.Release();
+                    _disposed = true;
+                }
+            }
+        }
+    }
+
+
+    
+    public class TaskLoop
+    {
+
+        #region Implementation of INotifyPropertyChanged
+
+        //public event PropertyChangedEventHandler PropertyChanged;
+
+        //private void OnPropertyChanged(string propertyName)
+        //{
+        //    if (this.PropertyChanged != null)
+        //        this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        //}
+
+        #endregion
+
+        private CancellationTokenSource _cancelSource;
+        private readonly AsyncLock _lock = new AsyncLock();
+        
+        public CancellationTokenSource CancelSource { get => _cancelSource; set => _cancelSource = value; }
+
+        public TaskLoop()
+        {
+            CancelSource = new CancellationTokenSource();
+        }
+
+        ~TaskLoop()
+        {
+            CancelSource?.Dispose();
+        }
+
+
+        public void ResetToken()
+        {
+            CancelSource?.Dispose();
+            CancelSource = new CancellationTokenSource();
+        }
+
+        public void StopLoop()
+        {
+            CancelSource?.Cancel();
+        }
+
+
+
+        public async Task RunLoop(int interval, Action action)
+        {
+            if (action == null)
+                return;
+
+            using (await _lock.LockAsync())
+            {
+                while (!CancelSource.IsCancellationRequested)
+                {
+                    await Task.Run(() => action());
+                    await Task.Delay(interval);
+                }
+            }
+        }
+
+    }
+
+
+
     public class MyLib
     {
 
