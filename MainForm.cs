@@ -1,4 +1,5 @@
 ﻿using Confluent.Kafka;
+using FTP_Demo.Common;
 using JohnNguyen.Lib;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -48,6 +49,7 @@ namespace FTP_Demo
         private void BtnUpload_Click(object sender, EventArgs e)
         {
             MyLib.UploadImage(file_name);
+            Console.WriteLine("done!");
         }
 
         private void Download_Btn_Click(object sender, EventArgs e)
@@ -178,6 +180,14 @@ namespace FTP_Demo
 
             isPressConsummer = !isPressConsummer;
 
+        }
+
+        private void btnSet_Click(object sender, EventArgs e)
+        {
+            MyParam.ftpServer = txtServer.Text.Replace(" ", "") + "";
+            MyParam.userName = txtUserName.Text.Replace(" ", "") + "";
+            MyParam.passWord = txtPass.Text.Replace(" ", "") + "";
+            MyParam.ftpDir = txtDir.Text.Replace(" ", "") + "";
         }
     }
 }

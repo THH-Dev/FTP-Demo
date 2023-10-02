@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using FTP_Demo.Common;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -448,35 +449,7 @@ namespace JohnNguyen.Lib
     }
 
 
-    public static class MyParam
-    {
-        public static string token = null;
-        public static List<string> list_printer = MyLib.Get_List_Printer();
-
-        public static eViewWindow cur_view = eViewWindow.View_None;
-
-        public static ImageList my_image_list;
-        public static List<string> my_list_image;
-        static int number_create = 0;
-
-        public static List<TaskLoop> taskLoops = new List<TaskLoop>();
-
-        static MyParam()
-        {
-            my_image_list = new ImageList();
-            my_image_list.ImageSize = new Size(100, 100);
-            my_list_image = new List<string>();
-
-            for (int i = 0; i < MyDefine.NUM_THREAD; i++)
-            {
-                taskLoops.Add(new TaskLoop());
-            }
-
-            Console.WriteLine($"Constructor MyParam = {number_create++}");
-
-        }
-
-    }
+    
 
     public sealed class AsyncLock
     {
@@ -782,8 +755,8 @@ namespace JohnNguyen.Lib
                 {
                     using (var client = new WebClient())
                     {
-                        ftp_dest = string.Format("ftp://192.168.100.122/{0}", Path.GetFileName(file_name));
-                        client.Credentials = new NetworkCredential("dev-01", "tanhungha@2022");
+                        ftp_dest = string.Format($"ftp://{MyParam.ftpServer}/{MyParam.ftpDir}/{Path.GetFileName(file_name)}");
+                        client.Credentials = new NetworkCredential(MyParam.userName, MyParam.passWord);
                         client.UploadFile(ftp_dest, WebRequestMethods.Ftp.UploadFile, file_name);
                     }
                 }
@@ -803,24 +776,33 @@ namespace JohnNguyen.Lib
 
        public static void DownloadFileFTP()
         {
-            string inputfilepath = @"F:\abc.jpg";
-            string ftphost = "192.168.100.122";
-            string ftpfilepath = "/2.jpg";
+            string inputfilepath = @"F:\abc.bmp";
+            string ftphost = MyParam.ftpServer;
+            string ftpfilepath = $"/{MyParam.ftpDir}/cafe.bmp";
 
             string ftpfullpath = "ftp://" + ftphost + ftpfilepath;
 
-            using (WebClient request = new WebClient())
+            try
             {
-                request.Credentials = new NetworkCredential("dev-01", "tanhungha@2022");
-                byte[] fileData = request.DownloadData(ftpfullpath);
-
-                using (FileStream file = File.Create(inputfilepath))
+                using (WebClient request = new WebClient())
                 {
-                    file.Write(fileData, 0, fileData.Length);
-                    file.Close();
+                    request.Credentials = new NetworkCredential(MyParam.userName, MyParam.passWord);
+                    byte[] fileData = request.DownloadData(ftpfullpath);
+
+                    using (FileStream file = File.Create(inputfilepath))
+                    {
+                        file.Write(fileData, 0, fileData.Length);
+                        file.Close();
+                    }
+                    MessageBox.Show("Download Complete");
                 }
-                MessageBox.Show("Download Complete");
             }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            
         }
         
         public static void DownloadFileFTP(string host, string user, string password, string fileftp, string path2save)

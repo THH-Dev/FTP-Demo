@@ -43,17 +43,31 @@
             this.listBoxLog = new System.Windows.Forms.ListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.Broker_Consummer_Txt = new System.Windows.Forms.TextBox();
-            this.Topic_Consummer_Txt = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.Topic_Consummer_Txt = new System.Windows.Forms.TextBox();
+            this.Broker_Consummer_Txt = new System.Windows.Forms.TextBox();
+            this.txtServer = new System.Windows.Forms.TextBox();
+            this.txtUserName = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.txtDir = new System.Windows.Forms.TextBox();
+            this.txtPass = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.btnSet = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // BtnLoad
             // 
-            this.BtnLoad.Location = new System.Drawing.Point(622, 13);
+            this.BtnLoad.Location = new System.Drawing.Point(9, 19);
             this.BtnLoad.Name = "BtnLoad";
             this.BtnLoad.Size = new System.Drawing.Size(75, 23);
             this.BtnLoad.TabIndex = 0;
@@ -63,14 +77,14 @@
             // 
             // txtPath
             // 
-            this.txtPath.Location = new System.Drawing.Point(12, 15);
+            this.txtPath.Location = new System.Drawing.Point(90, 20);
             this.txtPath.Name = "txtPath";
-            this.txtPath.Size = new System.Drawing.Size(579, 20);
+            this.txtPath.Size = new System.Drawing.Size(620, 20);
             this.txtPath.TabIndex = 1;
             // 
             // BtnUpload
             // 
-            this.BtnUpload.Location = new System.Drawing.Point(713, 13);
+            this.BtnUpload.Location = new System.Drawing.Point(9, 48);
             this.BtnUpload.Name = "BtnUpload";
             this.BtnUpload.Size = new System.Drawing.Size(75, 23);
             this.BtnUpload.TabIndex = 0;
@@ -80,7 +94,7 @@
             // 
             // Download_Btn
             // 
-            this.Download_Btn.Location = new System.Drawing.Point(713, 72);
+            this.Download_Btn.Location = new System.Drawing.Point(9, 76);
             this.Download_Btn.Name = "Download_Btn";
             this.Download_Btn.Size = new System.Drawing.Size(75, 23);
             this.Download_Btn.TabIndex = 0;
@@ -174,7 +188,7 @@
             this.groupBox1.Controls.Add(this.Broker_Producer_Txt);
             this.groupBox1.Controls.Add(this.Data2Send_Txt);
             this.groupBox1.Controls.Add(this.Send_Producer_Txt);
-            this.groupBox1.Location = new System.Drawing.Point(12, 132);
+            this.groupBox1.Location = new System.Drawing.Point(6, 272);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(352, 282);
             this.groupBox1.TabIndex = 4;
@@ -189,37 +203,12 @@
             this.groupBox2.Controls.Add(this.Topic_Consummer_Txt);
             this.groupBox2.Controls.Add(this.KafkaGet_btn);
             this.groupBox2.Controls.Add(this.Broker_Consummer_Txt);
-            this.groupBox2.Location = new System.Drawing.Point(390, 132);
+            this.groupBox2.Location = new System.Drawing.Point(384, 272);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(352, 282);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Consummer";
-            // 
-            // Broker_Consummer_Txt
-            // 
-            this.Broker_Consummer_Txt.Location = new System.Drawing.Point(74, 20);
-            this.Broker_Consummer_Txt.Name = "Broker_Consummer_Txt";
-            this.Broker_Consummer_Txt.Size = new System.Drawing.Size(115, 20);
-            this.Broker_Consummer_Txt.TabIndex = 1;
-            this.Broker_Consummer_Txt.Text = "localhost:9092";
-            // 
-            // Topic_Consummer_Txt
-            // 
-            this.Topic_Consummer_Txt.Location = new System.Drawing.Point(74, 47);
-            this.Topic_Consummer_Txt.Name = "Topic_Consummer_Txt";
-            this.Topic_Consummer_Txt.Size = new System.Drawing.Size(115, 20);
-            this.Topic_Consummer_Txt.TabIndex = 1;
-            this.Topic_Consummer_Txt.Text = "tuanna";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(9, 24);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(38, 13);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Broker";
             // 
             // label5
             // 
@@ -230,25 +219,170 @@
             this.label5.TabIndex = 3;
             this.label5.Text = "Topic";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(9, 24);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(38, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Broker";
+            // 
+            // Topic_Consummer_Txt
+            // 
+            this.Topic_Consummer_Txt.Location = new System.Drawing.Point(74, 47);
+            this.Topic_Consummer_Txt.Name = "Topic_Consummer_Txt";
+            this.Topic_Consummer_Txt.Size = new System.Drawing.Size(115, 20);
+            this.Topic_Consummer_Txt.TabIndex = 1;
+            this.Topic_Consummer_Txt.Text = "tuanna";
+            // 
+            // Broker_Consummer_Txt
+            // 
+            this.Broker_Consummer_Txt.Location = new System.Drawing.Point(74, 20);
+            this.Broker_Consummer_Txt.Name = "Broker_Consummer_Txt";
+            this.Broker_Consummer_Txt.Size = new System.Drawing.Size(115, 20);
+            this.Broker_Consummer_Txt.TabIndex = 1;
+            this.Broker_Consummer_Txt.Text = "localhost:9092";
+            // 
+            // txtServer
+            // 
+            this.txtServer.Location = new System.Drawing.Point(74, 16);
+            this.txtServer.Name = "txtServer";
+            this.txtServer.Size = new System.Drawing.Size(115, 20);
+            this.txtServer.TabIndex = 1;
+            this.txtServer.Text = "192.168.100.124";
+            // 
+            // txtUserName
+            // 
+            this.txtUserName.Location = new System.Drawing.Point(74, 43);
+            this.txtUserName.Name = "txtUserName";
+            this.txtUserName.Size = new System.Drawing.Size(69, 20);
+            this.txtUserName.TabIndex = 1;
+            this.txtUserName.Text = "thh";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(9, 20);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(38, 13);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Server";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(9, 47);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(29, 13);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "User";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label8);
+            this.groupBox3.Controls.Add(this.label6);
+            this.groupBox3.Controls.Add(this.label7);
+            this.groupBox3.Controls.Add(this.label3);
+            this.groupBox3.Controls.Add(this.btnSet);
+            this.groupBox3.Controls.Add(this.txtPass);
+            this.groupBox3.Controls.Add(this.txtUserName);
+            this.groupBox3.Controls.Add(this.txtDir);
+            this.groupBox3.Controls.Add(this.txtServer);
+            this.groupBox3.Location = new System.Drawing.Point(12, 12);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(724, 73);
+            this.groupBox3.TabIndex = 6;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "FTP Server";
+            // 
+            // txtDir
+            // 
+            this.txtDir.Location = new System.Drawing.Point(598, 16);
+            this.txtDir.Name = "txtDir";
+            this.txtDir.Size = new System.Drawing.Size(115, 20);
+            this.txtDir.TabIndex = 1;
+            this.txtDir.Text = "robot";
+            // 
+            // txtPass
+            // 
+            this.txtPass.Location = new System.Drawing.Point(192, 43);
+            this.txtPass.Name = "txtPass";
+            this.txtPass.Size = new System.Drawing.Size(69, 20);
+            this.txtPass.TabIndex = 1;
+            this.txtPass.Text = "thh@2023";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(533, 20);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(43, 13);
+            this.label7.TabIndex = 3;
+            this.label7.Text = "FTP Dir";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(156, 47);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(30, 13);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "Pass";
+            // 
+            // btnSet
+            // 
+            this.btnSet.Location = new System.Drawing.Point(638, 40);
+            this.btnSet.Name = "btnSet";
+            this.btnSet.Size = new System.Drawing.Size(75, 23);
+            this.btnSet.TabIndex = 0;
+            this.btnSet.Text = "Set";
+            this.btnSet.UseVisualStyleBackColor = true;
+            this.btnSet.Click += new System.EventHandler(this.btnSet_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(6, 232);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(180, 34);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "KAFKA";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.txtPath);
+            this.groupBox4.Controls.Add(this.BtnLoad);
+            this.groupBox4.Controls.Add(this.BtnUpload);
+            this.groupBox4.Controls.Add(this.Download_Btn);
+            this.groupBox4.Location = new System.Drawing.Point(15, 91);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(721, 110);
+            this.groupBox4.TabIndex = 8;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Test FTP";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(747, 565);
+            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.txtPath);
-            this.Controls.Add(this.Download_Btn);
-            this.Controls.Add(this.BtnUpload);
-            this.Controls.Add(this.BtnLoad);
             this.Name = "MainForm";
             this.Text = "Main";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -273,6 +407,18 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox Topic_Consummer_Txt;
         private System.Windows.Forms.TextBox Broker_Consummer_Txt;
+        private System.Windows.Forms.TextBox txtServer;
+        private System.Windows.Forms.TextBox txtUserName;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnSet;
+        private System.Windows.Forms.TextBox txtPass;
+        private System.Windows.Forms.TextBox txtDir;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.GroupBox groupBox4;
     }
 }
 
